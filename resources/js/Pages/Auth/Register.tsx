@@ -14,6 +14,7 @@ import {
 } from "@/Components/ui/card";
 import { Icons } from "@/Components/ui/icons";
 import { Button } from "@/Components/ui/button";
+import { Route } from "lucide-react";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -49,14 +50,20 @@ export default function Register() {
                 </CardHeader>
                 <CardContent className="grid gap-4">
                     <div className="grid grid-cols-2 gap-6">
-                        <Button variant="outline">
-                            <Icons.gitHub className="mr-2 h-4 w-4" />
-                            Github
-                        </Button>
-                        <Button variant="outline">
+                        <a
+                            href="auth/facebook/redirect"
+                            className="p-2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                        >
+                            <Icons.facebook className="mr-2 h-4 w-4" />
+                            Facebook
+                        </a>
+                        <a
+                            href="auth/google/redirect"
+                            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                        >
                             <Icons.google className="mr-2 h-4 w-4" />
                             Google
-                        </Button>
+                        </a>
                     </div>
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">

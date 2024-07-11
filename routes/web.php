@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -24,4 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::controller(SocialController::class)->group(function () {
+    Route::get('auth/facebook/redirect', 'facebookRedirect')->where('provider', 'facebook');
+    Route::get('auth/{provider}/callback', 'facebookCallback')->where('provider', 'facebook');
+
+    Route::get('auth/{provider}/redirect', 'googleRedirect')->where('provider', 'google');
+    Route::get('auth/{provider}/callback', 'googleCallback')->where('provider', 'google');
+});
+
+
+require __DIR__ . '/auth.php';
